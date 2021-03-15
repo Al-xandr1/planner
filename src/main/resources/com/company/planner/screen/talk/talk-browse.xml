@@ -22,35 +22,45 @@
     </facets>
     <dialogMode height="600"
                 width="800"/>
-    <layout expand="talksTable" spacing="true">
+    <layout expand="talksTabSheet" spacing="true">
         <filter id="filter"
                 dataLoader="talksDl">
             <properties include=".*"/>
         </filter>
-        <groupTable id="talksTable"
-                    width="100%"
-                    dataContainer="talksDc">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-            </actions>
-            <columns>
-                <column id="topic"/>
-                <column id="startDate"/>
-                <column id="duration"/>
-                <column id="desctription"/>
-                <column id="speaker"/>
-                <column id="endDate"/>
-            </columns>
-            <simplePagination/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="talksTable.create"/>
-                <button id="editBtn" action="talksTable.edit"/>
-                <button id="removeBtn" action="talksTable.remove"/>
-            </buttonsPanel>
-        </groupTable>
+        <tabSheet id="talksTabSheet">
+            <tab id="calendarTab" caption="msg://com.company.planner/TalksBrowser_calendarTab" margin="true,false,false,false" spacing="true"
+                 expand="talksCalendar">
+                <calendar id="talksCalendar" dataContainer="talksDc" startDateProperty="startDate"
+                          endDateProperty="endDate" captionProperty="topic" descriptionProperty="desctription"
+                          firstVisibleHourOfDay="8" lastVisibleHourOfDay="19" navigationButtonsVisible="true"/>
+            </tab>
+            <tab id="tableTab" caption="Talks table">
+                <groupTable id="talksTable"
+                                    width="100%"
+                                    dataContainer="talksDc">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                    </actions>
+                    <columns>
+                        <column id="topic"/>
+                        <column id="startDate"/>
+                        <column id="duration"/>
+                        <column id="desctription"/>
+                        <column id="speaker"/>
+                        <column id="endDate"/>
+                    </columns>
+                    <simplePagination/>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="talksTable.create"/>
+                        <button id="editBtn" action="talksTable.edit"/>
+                        <button id="removeBtn" action="talksTable.remove"/>
+                    </buttonsPanel>
+                </groupTable>
+            </tab>
+        </tabSheet>
         <hbox id="lookupActions" spacing="true" visible="false">
             <button action="lookupSelectAction"/>
             <button action="lookupCancelAction"/>
